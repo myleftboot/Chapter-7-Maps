@@ -40,7 +40,7 @@ var tourmalet = Titanium.Map.createAnnotation({
         for (var aLeg=0; aLeg < theData.routes[0].legs.length; aLeg++) {
         	var points = [];
 alert(theData.routes[0].legs[aLeg].distance.text);
-        	for (var aStep=0; aPoint< theData.routes[0].legs[aLeg].steps.length; aStep++) {
+        	for (var aStep=0; aStep< theData.routes[0].legs[aLeg].steps.length; aStep++) {
         		alert('here');
         		alert(theData.routes[0].legs[aLeg].steps[aStep].end_location.lat);
         		var endLoc = theData.routes[0].legs[aLeg].steps[aStep].end_location;
