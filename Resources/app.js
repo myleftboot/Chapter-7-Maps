@@ -27,52 +27,40 @@ var tourmalet = Titanium.Map.createAnnotation({
 	animate:true
 });
 
-// now get the directions from the bottom to the top
-    var url = "http://maps.googleapis.com/maps/api/directions/json?origin=Luz-Saint-Sauveur,+France&destination=42.908655,0.145054&sensor=false";
-    xhr = Titanium.Network.createHTTPClient();
-    xhr.open('GET',url);
-    xhr.onload = function(){
-        // Now parse the XML 
-        
-        var theData = JSON.parse(this.responseText);
-        //alert(this.responseText);
-        alert(theData.routes[0].legs.length);
-        for (var aLeg=0; aLeg < theData.routes[0].legs.length; aLeg++) {
-        	var points = [];
-alert(theData.routes[0].legs[aLeg].distance.text);
-        	for (var aStep=0; aStep< theData.routes[0].legs[aLeg].steps.length; aStep++) {
-        		alert('here');
-        		alert(theData.routes[0].legs[aLeg].steps[aStep].end_location.lat);
-        		var endLoc = theData.routes[0].legs[aLeg].steps[aStep].end_location;
+function addRouteToMap(_args) {
+        var points = [];        
+        for (var aLeg=0; aLeg < _args.routes[0].legs.length; aLeg++) {
+
+        	for (var aStep=0; aStep< _args.routes[0].legs[aLeg].steps.length; aStep++) {
+        		// add the end location of every step of the route to the array of points
+        		points.push({latitude: _args.routes[0].legs[aLeg].steps[aStep].end_location.lat
+        		            ,longitude: _args.routes[0].legs[aLeg].steps[aStep].end_location.lng
+        		           });
         	}
         }
-        //alert(theData.routes.legs.steps.end_location[0]);
-        //routes/legs/steps/end_location
-/*        var points = [];
-        var coords = xml.documentElement.getElementsByTagName("LineString");
-        for(var cc=0; cc < coords.length; cc++) {
-            var line = coords.item(cc);
-            var str = line.firstChild.text.split(" ");
-            for(dd = 0; dd < str.length; dd++) {
-                var loc = str[dd].split(',');
-                if(loc[0] && loc[1]) {
-                    points.push({latitude: loc[1], 
-                         longitude: loc[0]});
-                }
-            }
-        }
+
         var route = {
-                name:"boston",
+                name:"The climb",
                 points:points,
                 color:"red",
                 width:4
             };
  
         // add a route
-        map.addRoute(route);*/
-    };  
-    xhr.send();
+        theMap.addRoute(route);
+}
 
+// now get the directions from the bottom to the top
+var url = "http://maps.googleapis.com/maps/api/directions/json?origin=Luz-Saint-Sauveur,+France&destination=42.908655,0.145054&sensor=false";
+xhr = Titanium.Network.createHTTPClient();
+xhr.open('GET',url);
+xhr.onload = function(){
+	// Now parse the XML 
+
+	var theData = JSON.parse(this.responseText);
+	addRouteToMap(theData);
+};
+xhr.send();
 
 
 //theMap.addAnnotation(tourmalet);
