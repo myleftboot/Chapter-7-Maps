@@ -4,27 +4,28 @@
 // this sets the background color of the master UIView (when there are no windows/tab groups on it)
 Titanium.UI.setBackgroundColor('#000');
 
+var Map = require('ti.map');
 // create base root window
 //
 var win1 = Titanium.UI.createWindow({  
     backgroundColor:'#fff'
 });
 
-var theMap = Titanium.Map.createView({
-			mapType: Ti.Map.SATELLITE_TYPE,
-			region: {latitude:42.909134, longitude:0.145054, 
-					  latitudeDelta:0.01, longitudeDelta:0.01},
-			animate:true,
-			regionFit:true,
+var theMap = Map.createView({
+			mapType:   Map.SATELLITE_TYPE,
+			region:    {latitude:42.909134, longitude:0.145054, 
+					    latitudeDelta:0.01, longitudeDelta:0.01},
+			animate:   true,
+			regionFit: true,
 		});
 		
-var tourmalet = Titanium.Map.createAnnotation({
-	latitude:42.908655,
-	longitude:0.145054,
-	title:"Col du Tourmalet",
-	subtitle:'France',
-	pincolor:Titanium.Map.ANNOTATION_RED,
-	animate:true
+var tourmalet = Map.createAnnotation({
+	latitude:   42.908655,
+	longitude:  0.145054,
+	title:      "Col du Tourmalet",
+	subtitle:   'France',
+	pincolor:   Map.ANNOTATION_RED,
+	animate:    true
 });
 
 function addRouteToMap(_args) {
