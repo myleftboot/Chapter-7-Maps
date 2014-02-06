@@ -56,20 +56,22 @@ function updateMap(_args) {
 	theMap.setLocation({latitude : _args.latitude
 		               ,longitude : _args.longitude});
 }
-var theMap = Titanium.Map.createView({
-			mapType: Ti.Map.SATELLITE_TYPE,
+
+var Map = require('ti.map');
+var theMap = Map.createView({
+			mapType: Map.SATELLITE_TYPE,
 			region: {latitude:42.909134, longitude:0.145054, 
 					  latitudeDelta:0.01, longitudeDelta:0.01},
 			animate:true,
 			regionFit:true,
 		});
 		
-var tourmalet = Titanium.Map.createAnnotation({
+var tourmalet = Map.createAnnotation({
 	latitude:42.908655,
 	longitude:0.145054,
 	title:"Col du Tourmalet",
 	subtitle:'France',
-	pincolor:Titanium.Map.ANNOTATION_RED,
+	pincolor:Map.ANNOTATION_RED,
 	animate:true
 });
 

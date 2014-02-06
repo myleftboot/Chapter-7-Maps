@@ -45,6 +45,8 @@
     </mobileweb>
     <modules>
         <module platform="commonjs">ti.cloud</module>
+        <module platform="iphone">ti.map</module>
+        <module platform="android">ti.map</module>
     </modules>
     <deployment-targets>
         <target device="blackberry">false</target>
@@ -53,5 +55,5 @@
         <target device="iphone">true</target>
         <target device="mobileweb">true</target>
     </deployment-targets>
-    <sdk-version>3.0.0.GA</sdk-version>
+    <sdk-version>3.2.0.GA</sdk-version>
 </ti:app>
