@@ -14,7 +14,7 @@ var win1 = Titanium.UI.createWindow({
 var theMap = Map.createView({
 			mapType:   Map.SATELLITE_TYPE,
 			region:    {latitude:42.909134, longitude:0.145054, 
-					    latitudeDelta:0.01, longitudeDelta:0.01},
+					    latitudeDelta:0.2, longitudeDelta:0.2},
 			animate:   true,
 			regionFit: true,
 		});
@@ -40,12 +40,12 @@ function addRouteToMap(_args) {
         	}
         }
 
-        var route = {
+        var route = Map.createRoute({
                 name:"The climb",
                 points:points,
                 color:"red",
                 width:4
-            };
+            });
  
         // add a route
         theMap.addRoute(route);
